@@ -97,12 +97,14 @@ class Rekruutjobs_Admin {
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/rekruutjobs-admin.js', array( 'jquery' ), $this->version, false );
 	}
-
 	public function setup_plugin_options_menu(){
-		add_options_page( 'Rekruut Settings', 'Rekruut Settings', 'manage_options', 'rekruut', array( $this, 'render_settings_page_content'));
+		add_options_page( 'Rekruut Settings', 'Rekruut Settings', 'manage_options', 'rekruut', array($this,'render_settings_page_content'));
 	}
 
 	function  render_settings_page_content() {
-		die('This is the page content');
+		if ( !current_user_can( 'manage_options' ) )  {
+			wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+		}
+		include plugin_dir_path( __FILE__ ) . 'partials/rekruutjobs-admin-display.php';
 	}
 }

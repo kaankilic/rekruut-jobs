@@ -12,5 +12,32 @@
  * @subpackage Rekruutjobs/admin/partials
  */
 ?>
-
-<!-- This file should primarily consist of HTML with a little bit of PHP. -->
+<div class="wrap">
+	<h1>Your Plugin Page Title</h1>
+	<form method="post" action="options.php"> 
+		<?php settings_fields( 'rekruut-settings' ); ?>
+		<table class="form-table">
+			<tbody>
+				<tr>
+					<th scope="row"><label for="blogname">Rekruut Client ID</label></th>
+					<td>
+						<input name="blogname" type="text" id="blogname" value="<?php get_option('rekruut_client_id') ?>" class="regular-text">
+					</td>
+				</tr>
+				<tr>
+					<th scope="row"><label for="blogname">Rekruut Client Secret</label></th>
+					<td>
+						<input name="blogname" type="text" id="blogname" value="<?php get_option('rekruut_client_secret') ?>" class="regular-text">
+					</td>
+				</tr>
+				<tr>
+					<th scope="row"><label for="blogname">App URL</label></th>
+					<td>
+						<input name="blogname" type="text" id="blogname" value="<?php get_option('rekruut_app') ?>" class="regular-text">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<?php submit_button(); ?>
+	</form>
+</div>
