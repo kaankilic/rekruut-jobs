@@ -30,7 +30,9 @@ class Rekruutjobs_Deactivator {
 	 * @since    1.0.0
 	 */
 	public static function deactivate() {
-
+		delete_option('rekruut_client_id');
+		delete_option('rekruut_client_secret');
+		delete_option('rekruut_app');
 	}
 
 }

@@ -30,7 +30,9 @@ class Rekruutjobs_Activator {
 	 * @since    1.0.0
 	 */
 	public static function activate() {
-
+		add_option('rekruut_client_id');
+		add_option('rekruut_client_secret');
+		add_option('rekruut_app');
 	}
 
 }

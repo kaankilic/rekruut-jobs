@@ -105,6 +105,15 @@ class Rekruutjobs_Admin {
 		if ( !current_user_can( 'manage_options' ) )  {
 			wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 		}
+		if (isset($_POST['rekruut_client_id'])) {
+			update_option('rekruut_client_id', $_POST['rekruut_client_id']);
+		}
+		if (isset($_POST['rekruut_client_secret'])) {
+			update_option('rekruut_client_secret', $_POST['rekruut_client_secret']);
+		}
+		if (isset($_POST['rekruut_app'])) {
+			update_option('rekruut_app', $_POST['rekruut_app']);
+		} 
 		include plugin_dir_path( __FILE__ ) . 'partials/rekruutjobs-admin-display.php';
 	}
 }
