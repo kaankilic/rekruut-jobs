@@ -99,5 +99,9 @@ class Rekruutjobs_Public {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/rekruutjobs-public.js', array( 'jquery' ), $this->version, false );
 
 	}
-
+	public function register_shortcodes(){
+		add_shortcode('job-posts',function(){
+			echo "goo and bra";
+		});
+	}
 }
