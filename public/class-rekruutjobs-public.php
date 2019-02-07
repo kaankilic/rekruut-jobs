@@ -99,9 +99,36 @@ class Rekruutjobs_Public {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/rekruutjobs-public.js', array( 'jquery' ), $this->version, false );
 
 	}
+	public function create_posts_page(){
+		register_post_type('job-posts',
+			array(
+				'labels' => array(
+					'name' => __( 'Job Posts' ),
+					'singular_name' => __( 'Job Post' )
+				),
+				'public'          => true,
+				'show_ui'         => true,
+				'query_var'       => 'job-posts',
+				'rewrite'         => array('slug' => 'job-posts'),
+				'hierarchical'    => true,
+				'supports'        => array()
+			)
+		);
+		register_taxonomy('company-category', 'company', array(
+			'hierarchical'    => true,
+			'label'           => __('Categories'),
+			'query_var'       => 'company-category',
+			'rewrite'         => array('slug' => 'categories' ))
+	);
+	}
 	public function register_shortcodes(){
 		add_shortcode('job-posts',function(){
-			echo "goo and bra";
+			$endpoint = get_option("rekruut_app");
+			$response = wp_remote_get($endpoint."/api/positions");
+			$posts = json_decode($response["body"]);
+			foreach ($posts->objects as $post) {
+				echo $post->title."<br />";
+			}
 		});
 	}
 }
