@@ -100,34 +100,19 @@ class Rekruutjobs_Public {
 
 	}
 	public function create_posts_page(){
-		register_post_type('job-posts',
-			array(
-				'labels' => array(
-					'name' => __( 'Job Posts' ),
-					'singular_name' => __( 'Job Post' )
-				),
-				'public'          => true,
-				'show_ui'         => true,
-				'query_var'       => 'job-posts',
-				'rewrite'         => array('slug' => 'job-posts'),
-				'hierarchical'    => true,
-				'supports'        => array()
-			)
-		);
-		register_taxonomy('company-category', 'company', array(
-			'hierarchical'    => true,
-			'label'           => __('Categories'),
-			'query_var'       => 'company-category',
-			'rewrite'         => array('slug' => 'categories' ))
-	);
 	}
 	public function register_shortcodes(){
+		$has_post_id = $_GET['post_id'];
 		add_shortcode('job-posts',function(){
 			$endpoint = get_option("rekruut_app");
-			$response = wp_remote_get($endpoint."/api/positions");
-			$posts = json_decode($response["body"]);
-			foreach ($posts->objects as $post) {
-				echo $post->title."<br />";
+			if (!is_null($has_post_id)) {
+				$response = wp_remote_get($endpoint."/api/positions");
+				$posts = json_decode($response["body"]);
+				include plugin_dir_path( __FILE__ ) . 'partials/rekruutjobs-public-display.php';
+			}else{
+				$response = wp_remote_get($endpoint."/api/position/view/".$has_post_id);
+				$post = json_decode($response["body"]);
+				include plugin_dir_path( __FILE__ ) . 'partials/rekruutjobs-public-detail.php';
 			}
 		});
 	}
