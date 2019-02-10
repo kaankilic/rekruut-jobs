@@ -18,4 +18,4 @@ You can simply use `[job-posts]` shortcode to show your job list.
 Make sure to communicate the changes to your code via an issue or email before sending a pull request.
 
 ### License
-This project is licensed under the GPL3 License - see the LICENSE.txt file for details
+This project is licensed under the GNU General Public License v2.0 - see the LICENSE.txt file for details
