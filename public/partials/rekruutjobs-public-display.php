@@ -25,7 +25,7 @@
 	<tbody>
 		<?php foreach($posts->objects as $post): ?>
 		<tr>
-			<td><a href="?post_id=<?php echo $post->id; ?>"><?php echo $post->title; ?></a></td>
+			<td><a href="<?php echo esc_url( add_query_arg( 'slug', $post->slug ) )?>"><?php echo $post->title; ?></a></td>
 			<td><a href="?post_id=<?php echo $post->id; ?>"><?php echo $post->category->title; ?></a></td>
 			<td><a href="?post_id=<?php echo $post->id; ?>"><?php echo $post->location->name; ?></a></td>
 		</tr>

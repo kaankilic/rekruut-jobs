@@ -99,18 +99,16 @@ class Rekruutjobs_Public {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/rekruutjobs-public.js', array( 'jquery' ), $this->version, false );
 
 	}
-	public function create_posts_page(){
-	}
 	public function register_shortcodes(){
-		$has_post_id = $_GET['post_id'];
 		add_shortcode('job-posts',function(){
+			$post_id = $_GET["slug"];
 			$endpoint = get_option("rekruut_app");
-			if (!is_null($has_post_id)) {
+			if (is_null($post_id)) {
 				$response = wp_remote_get($endpoint."/api/positions");
 				$posts = json_decode($response["body"]);
 				include plugin_dir_path( __FILE__ ) . 'partials/rekruutjobs-public-display.php';
 			}else{
-				$response = wp_remote_get($endpoint."/api/position/view/".$has_post_id);
+				$response = wp_remote_get($endpoint."/api/positions/".$post_id);
 				$post = json_decode($response["body"]);
 				include plugin_dir_path( __FILE__ ) . 'partials/rekruutjobs-public-detail.php';
 			}
