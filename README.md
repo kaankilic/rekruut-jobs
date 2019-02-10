@@ -1,7 +1,7 @@
 # Rekruut Jobs
 Jobs for WordPress is a powerfull WordPress plugin that make it easy to add job postings to your company’s website in a structured way to integrating with **Rekruut App**. While you can comfortably put your job lists on Rekruut in a user-friendly way.
 
-(Rekruut - Recruitment Management Application)[https://codecanyon.net/item/rekruut-recruitment-management-application/23178160]
+[Rekruut - Recruitment Management Application](https://codecanyon.net/item/rekruut-recruitment-management-application/23178160)
 
 ## Getting Started
 The following instructions will show you how to integrate your Wordpress with Rekruut App.
